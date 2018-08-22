@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>왓챠</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/watcha_search.css' %}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+</head>
+<body>
+<div class="header">
+  <a href="{% url 'watcha:main' %}"><div class="logo">WATCHA</div></a>
+
+  <div class="header__search">
+    <form class="search" action="{% url 'watcha:search' %}" method="GET">
+  <span class="search__img"><i class="fas fa-search"></i></span>
+    <input type="search" class="search-bar" name="q" placeholder="작품, 제목, 배우, 감독을 검색해보세요.">
+    </form>
+  </div>
+
+  <a href="{% url 'watcha:profile' %}"><div class="header__user"><i class="fas fa-user-circle"></i></div></a>
+
+</div>
+
+
+<div class="content">
+  <div class="content__message">내가 평가한 영화</div>
+  <div class="content__pack__high">
+      {% for movie_query in movie_list_seen %}
+        {% for movie in movie_query %}
+          <div class="content__movie">
+            <div class="content__movie__img">
+              {{ forloop. }}
+                <a href="{% url 'watcha:detail' movie %}">
+                <img src="{{ movie.poster }}" alt="" width="130" height="180">
+              </a>
+            </div>
+          <div class="content__movie__info">
+            <div class="content__movie__info__title">
+              {{ movie.title|safe }}
+            </div>
+            <div class="content__movie__info__info">
+              {{ movie.Pubdate }} - {{ movie.director }}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  <div class="content__message">아직 {{ request.user }}님이 보지 않은 영화</div>
+  <div class="content__pack">
+    {% for movie in movie_list_not_seen %}
+        {% if movie.poster %}
+        <div class="content__movie">
+          <div class="content__movie__img">
+            {{ forloop. }}
+            <a href="{% url 'watcha:detail' movie %}">
+              <img src="{{ movie.poster }}" alt="" width="130" height="180">
+            </a>
+          </div>
+          <div class="content__movie__info">
+          <div class="content__movie__info__title">
+            {{ movie.title|safe }}
+          </div>
+          <div class="content__movie__info__info">
+            {{ movie.pubDate }} - {{ movie.director }}
+          </div>
+          </div>
+        </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+    추가내용
+</div>

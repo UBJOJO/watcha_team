@@ -214,7 +214,15 @@ def profile(request):
 
 
 def flavor(request):
-    return render(request, 'watcha/watcha_flavor.html')
+    movie_list = Score.objects.filter(author = request.user)
+    movie_list_seen = []
+    for movie in movie_list:
+        movie_list_seen.append(Movie.objects.filter(title = movie.movie_name))
+    movie_list_not_seen = Movie.objects.all()
+    for movie in movie_list_not_seen:
+        if Score.objects.filter(movie_name = movie.title, author = request.user):
+            movie_list_not_seen = movie_list_not_seen.exclude(title = movie.title)
+    return render(request, 'watcha/watcha_flavor.html', {'movie_list_seen': movie_list_seen,'movie_list_not_seen' : movie_list_not_seen})
 
 
 class UserFormView(View):
