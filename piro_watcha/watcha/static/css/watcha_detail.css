@@ -80,17 +80,19 @@ a {
 }
 
 .main__poster img {
-	border-radius: 10px;
-	margin-left: 50px;
-	width: 80px;
-	width: 150px;
+	border-radius: 5px;
+	width: 160px;
+	height: 220px;
+}
+
+.main__info {
+
 }
 
 .main__title {
 	margin-top: 20px;
 	margin-left: 20px;
 	margin-right: 20px;
-	margin-bottom: 60px;
 	padding-bottom: 20px;
 	text-align: center;
 	font-size: 30px;
@@ -102,7 +104,7 @@ a {
 	display: inline-block;
 	float: left;
 	width: 300px;
-	height: 200px;
+	height: 180px;
 	color: white;
 	font-weight: 900;
 	background-color: #ff2f6e;
@@ -145,3 +147,72 @@ a {
 	padding-top: 10px;
 	padding-left: 68px;
 }
+
+.top-menu {
+	margin-left: 5px;
+	font-size: 20px;
+}
+
+.edit {
+	font-size: 13px;
+}
+
+.delete {
+	font-size: 13px;
+}
+
+/*--------------------------------*/
+
+#star_score {
+	font-size: 20px;
+	width: 15px;
+	margin-left: 160px;
+	margin-top: 15px;
+	border: none;
+	color: black;
+	/*background-color: skyblue;*/
+}
+
+.star__input i {
+	margin-top: 10px;
+	margin-left: 10px;
+	font-size: 45px;
+	color: gray;
+}
+
+
+
+button {
+	border: none;
+	margin-top: 15px;
+	margin-left: 120px;
+	width: 100px;
+	height: 40px;
+	border-radius: 15px;
+	background-color: gray;
+}
+
+#btn span {
+	color: white;
+	font-weight: 900;
+}
+
+.star_form {
+	width: 350px;
+	height: 150px;
+	margin-bottom: 50px;
+	margin-left: 170px;
+	/*border: 2px solid black;*/
+}
+
+/*.comment_set {
+	display: flex;
+	justify-content: center;
+}*/
+
+.info__box {
+	display: flex;
+	justify-content: space-around;
+}
+
+/*/

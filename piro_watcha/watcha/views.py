@@ -34,13 +34,45 @@ def main(request):
     return render(request, 'watcha/watcha_main.html', {'comment_num': comment_num})
 
 
+# def score_new(request, title):
+#     if Score.objects.filter(movie_name=title, author=request.user):
+#         return redirect('watcha:score_edit', title=title)
+#     else:
+#         if request.method == 'POST':
+#             form = ScoreForm(request.POST)
+#             if form.is_valid():
+#                 score = form.save(commit=False)
+#                 score.author = request.user
+#                 score.star = form.cleaned_data['star']
+#                 score.movie_name = title
+#                 score.save()
+#                 return redirect('watcha:score', title=score.movie_name)
+#         else:
+#             form = ScoreForm()
+#             movie = get_object_or_404(Movie, title=title)
+#         return render(request, 'watcha/watcha_score.html', {'form': form, 'movie': movie})
+
 def detail(request, title):
     comment_num = Comment.objects.count()
     movie = get_object_or_404(Movie, title=title)
     comment_list = Comment.objects.filter(movie_name=title)
     score_list = Score.objects.filter(movie_name=title)
-    return render(request, 'watcha/watcha_detail.html',
-                  {'movie': movie, 'comment_list': comment_list, 'score_list': score_list, 'count': comment_num})
+    form = ScoreForm(request.POST)
+
+    if request.method == 'POST':
+        form = ScoreForm(request.POST)
+        if form.is_valid():
+            score = form.save(commit=False)
+            score.author = request.user
+            score.star = form.cleaned_data['star']
+            score.movie_name = Movie.objects.get(title=title).title
+            score.save()
+            return redirect('watcha:detail', title=score.movie_name)
+
+    else:
+        return render(request, 'watcha/watcha_detail.html',
+                      {'movie': movie, 'comment_list': comment_list, 'score_list': score_list,
+                       'count': comment_num, 'form': form})
 
 
 def search(request):
@@ -98,7 +130,7 @@ def comment_new(request, title):
                 comment = form.save(commit=False)
                 comment.author = request.user
                 comment.comment = form.cleaned_data['comment']
-                comment.star = form.cleaned_data['star']
+                # comment.star = form.cleaned_data['star']
                 comment.movie_name = Movie.objects.get(title=title).title
                 comment.save()
                 return redirect('watcha:detail', title=comment.movie_name)

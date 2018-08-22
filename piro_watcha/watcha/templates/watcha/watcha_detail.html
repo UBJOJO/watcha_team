@@ -30,20 +30,51 @@
       {{ movie.title }}
     </div>
 
+      <div class="star_form">
+        <div id = "star__new" class="star__new">
+            <form action="" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+            <div class="comment__star">
+              {{ form.star }}
+            </div>
+            <div class="star__input">
+              <i id = "one" class="fas fa-star"></i>
+              <i id = "two" class="fas fa-star"></i>
+              <i id = "three" class="fas fa-star"></i>
+              <i id = "four" class="fas fa-star"></i>
+              <i id = "five" class="fas fa-star"></i>
+            </div>
+
+            <button id = "btn" type="submit"><span>평가하기</span></button>
+            </form>
+        </div>
+    </div>
+  <div class="info__box">
     <div class="main__poster">
       <img src="{{ movie.poster }}">
     </div>
     <div class="main__info">
-     <!--  작가: 
-      출연진:
-      줄거리: -->
+        감독:  {{ movie.director_set }}<br><br>
+        출연진:  {{ movie.cast_set }}<br><br>
+        줄거리:  {{ movie.content }}<br><br>
+        개봉일: {{ movie.pubDate }}<br><br>
+        장르: {{ movie.genre_set }}<br><br>
+        국가: {{ movie.country_set }}<br><br>
     </div>
+  </div>
+
+  <div class="comment_set">
     <div id = "comment" class="comment__new">
-           <a href="{% url 'watcha:comment' movie.title %}" class="top-menu"><span id="comment__s" class="glyphicon glyphicon-plus">코멘트 작성하기</span></a>
+           <a href="{% url 'watcha:comment' movie.title %}" class="top-menu"><span class="glyphicon glyphicon-plus">코멘트 작성하기</span></a>
     </div>
-    <div id = "score" class="comment__new">
+
+
+  </div>
+
+
+<!--     <div id = "score" class="comment__new">
           <a href="{% url 'watcha:score' movie.title %}" class="top-menu"><span id="score__s" class="glyphicon glyphicon-plus">평점 작성하기</span></a>
-    </div>
+    </div> -->
 
     <div class="liner">
 
@@ -54,22 +85,21 @@
       <div class="comment__box">
         <br>
         작성자 : {{ comment.author }}
-        <a class="top-menu" href="{% url 'watcha:comment_edit' movie.title %}"><span class="glyphicon glyphicon-pencil">수정하기</span></a>
-        <a class="top-menu" href="{% url 'watcha:comment_delete' comment.pk %}"><span class="glyphicon glyphicon-remove">삭제하기</span></a>
-        <br>
-        <br>
+        <a class="edit" href="{% url 'watcha:comment_edit' movie.title %}"><span class="glyphicon glyphicon-pencil">수정하기</span></a>
+        <a class="delete" href="{% url 'watcha:comment_delete' comment.pk %}"><span class="glyphicon glyphicon-remove">삭제하기</span></a>
         <br>
         <br>
         <br>
         내용 : {{ comment.comment }}
         <br>
         <br>
-        <span class="star"><i class="fas fa-star"></i> {{ comment.star }}</span>
+        <span class="star"><i class="fas fa-star"></i> 3 
+        </span>
         <br>
       </div>
       {% endfor %}
 
-      <div class="score">
+      <!-- <div class="score">
       {% for score in score_list %}
         <h1>평점!!</h1>
         <br>
@@ -84,7 +114,7 @@
       </div>
       {% endfor %}
 
-    </div>
+    </div> -->
   </div>
 </div>
 
@@ -94,18 +124,119 @@
   crossorigin="anonymous"></script>
 <script type="text/javascript">
 
-  $('#comment').on('mouseenter', Mouseenter);
-  $('#comment').on('mouseleave', Mouseleave);
+// 마우스 올릴 때
+    $('#one').on('mouseenter', mouseEnterPhoto_1);
+    $('#two').on('mouseenter', mouseEnterPhoto_2);
+    $('#three').on('mouseenter', mouseEnterPhoto_3);
+    $('#four').on('mouseenter', mouseEnterPhoto_4);
+    $('#five').on('mouseenter', mouseEnterPhoto_5);
 
-  function Mouseenter() {
-    $('#comment').css('box-shadow', '7px 7px #e1e1e1');
-    $('#comment__s').css('color', 'black');
+
+    $('#one').on('click', clickone);
+    function clickone() {
+      $('#star_score').val(1);
+    }
+    $('#two').on('click', clicktwo);
+    function clicktwo() {
+      $('#star_score').val(2);
+    }
+    $('#three').on('click', clickthree);
+    function clickthree() {
+      $('#star_score').val(3);
+    }
+    $('#four').on('click', clickfour);
+    function clickfour() {
+      $('#star_score').val(4);
+    }
+    $('#five').on('click', clickfive);
+    function clickfive() {
+      $('#star_score').val(5);
+    }
+
+
+
+// // 버튼 그림자 
+//     $('#btn').on('mouseenter', mouseEnterPhoto_B);
+//     $('#btn').on('mouseleave', mouseLeavePhoto_B);
+
+
+
+
+
+
+// 별 1개
+    function mouseEnterPhoto_1() {
+      $('#one').css('color', 'yellow');
+      $('#two').css('color', 'gray');
+      $('#three').css('color', 'gray');
+      $('#four').css('color', 'gray');
+      $('#five').css('color', 'gray');
+    }
+
+// 별2개 
+  function mouseEnterPhoto_2() {
+      $('#one').css('color', 'yellow');
+      $('#two').css('color', 'yellow');
+      $('#three').css('color', 'gray');
+      $('#four').css('color', 'gray');
+      $('#five').css('color', 'gray');
+    }
+// 별3개 
+  function mouseEnterPhoto_3() {
+      $('#one').css('color', 'yellow');
+      $('#two').css('color', 'yellow');
+      $('#three').css('color', 'yellow');
+      $('#four').css('color', 'gray');
+      $('#five').css('color', 'gray');
+    }
+// 별4개
+  function mouseEnterPhoto_4() {
+      $('#one').css('color', 'yellow');
+      $('#two').css('color', 'yellow');
+      $('#three').css('color', 'yellow');
+      $('#four').css('color', 'yellow');
+      $('#five').css('color', 'gray');
+
+    }
+// 별5개 
+  function mouseEnterPhoto_5() {
+      $('#one').css('color', 'yellow');
+      $('#two').css('color', 'yellow');
+      $('#three').css('color', 'yellow');
+      $('#four').css('color', 'yellow');
+      $('#five').css('color', 'yellow');
+    }
+
+
+
+
+  // -------------------------------------------
+
+  // $('#comment').on('mouseenter', Mouseenter);
+  // $('#comment').on('mouseleave', Mouseleave);
+
+  // function Mouseenter() {
+  //   $('#comment').css('box-shadow', '7px 7px #e1e1e1');
+  //   $('#comment__s').css('color', 'black');
+  // }
+
+  //  function Mouseleave() {
+  //   $('#comment').css('box-shadow', 'none');
+  //   $('#comment__s').css('color', 'white');
+  // }
+
+
+  $('#btn').on('mouseenter', ButtonEnter);
+  $('#btn').on('mouseleave', ButtonLeave);
+
+
+  function ButtonEnter() {
+    $('#btn').css('background-color', '#ff2f6e');
+  }
+  function ButtonLeave() {
+    $('#btn').css('background-color', 'gray');
   }
 
-   function Mouseleave() {
-    $('#comment').css('box-shadow', 'none');
-    $('#comment__s').css('color', 'white');
-  }
 
 </script>
 

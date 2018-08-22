@@ -23,7 +23,7 @@ ol, ul{
 	margin-top: 55px;
 	margin-bottom: 80px;
 	width: 500px;
-	height: 400px;
+	height: 250px;
 	border-radius: 15px;
 	border: 2px solid #ff6090;
 	background-color: white;
@@ -52,7 +52,7 @@ ol, ul{
 .comment {
 	width: 100%;
 	height: 400px;
-	margin-top: 50px;
+	margin-top: 40px;
 }
 
 .comment__input {
@@ -72,10 +72,11 @@ ol, ul{
 
 #star_id {
 	font-size: 20px;
-	width: 10px;
+	width: 20px;
 	margin-left: 238px;
 	margin-top: 20px;
 	border: none;
+	/*background-color: red;*/
 }
 
 .star__input i {
@@ -87,7 +88,7 @@ ol, ul{
 
 button {
 	border: none;
-	margin-top: 70px;
+	margin-top: 40px;
 	margin-left: 200px;
 	width: 100px;
 	height: 40px;

@@ -17,19 +17,7 @@
   			{% csrf_token %}
  			<div class="comment__input">
 				{{ form.comment }}
-			</div>
-			<div class="comment__star">
-				{{ form.star }}
-			</div>
-			<div class="star__input">
-				<i id = "one" class="fas fa-star"></i>
-				<i id = "two" class="fas fa-star"></i>
-				<i id = "three" class="fas fa-star"></i>
-				<i id = "four" class="fas fa-star"></i>
-				<i id = "five" class="fas fa-star"></i>
-			</div>
-
-
+			</div>		
 			<button id = "button" type="submit">평가하기</button>
 			</form>
  		</div>
@@ -64,6 +52,7 @@
     $('#five').on('click', click_five);
 
     function click_one() {
+        console.log(111);
 		$('#star_id').val(1);
     }
     function click_two() {
