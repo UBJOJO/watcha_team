@@ -176,6 +176,7 @@ a {
 .star__input i {
 	margin-top: 10px;
 	margin-left: 10px;
+	margin-bottom: 10px;
 	font-size: 45px;
 	color: gray;
 }
@@ -185,7 +186,7 @@ a {
 button {
 	border: none;
 	margin-top: 15px;
-	margin-left: 120px;
+	margin-left: 65px;
 	width: 100px;
 	height: 40px;
 	border-radius: 15px;
@@ -215,4 +216,17 @@ button {
 	justify-content: space-around;
 }
 
-/*/
+
+.restar {
+	display: inline-block;
+	width: 100px;
+	border-radius: 15px;
+	color: white;
+	font-size: 14px;
+	font-weight: 900;
+	background-color: gray;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+

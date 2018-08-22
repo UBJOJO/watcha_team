@@ -1,92 +1,97 @@
 {% load static %}
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static 'css/watcha_detail.css' %}">
 
-  <div class="nav">
+<div class="nav">
 
-    <a href="{% url 'watcha:main' %}"><div class="nav__watcha">WATCHA</div></a>
+  <a href="{% url 'watcha:main' %}">
+    <div class="nav__watcha">WATCHA</div>
+  </a>
 
 
-    <div class="nav__search">
-      <form class="search" action="{% url 'watcha:search' %}" method="GET">
-        <div class="nav__search">
-          <span class="nav__search__img"><i class="fas fa-search"></i></span>
-            <input type="search" class="search-bar" name="q" placeholder="작품, 제목, 배우, 감독을 검색해보세요.">
-        </div>
-      </form>
-    </div>
+  <div class="nav__search">
+    <form class="search" action="{% url 'watcha:search' %}" method="GET">
+      <div class="nav__search">
+        <span class="nav__search__img"><i class="fas fa-search"></i></span>
+        <input type="search" class="search-bar" name="q" placeholder="작품, 제목, 배우, 감독을 검색해보세요.">
+      </div>
+    </form>
+  </div>
 
-    <a href="{% url 'watcha:profile' %}">
+  <a href="{% url 'watcha:profile' %}">
     <div class="nav__profile">
       <i class="fas fa-user-circle"></i>
     </div>
-    </a>
+  </a>
 
-  </div>
+</div>
 
-<div class="main__content_flex">   
+<div class="main__content_flex">
   <div class="main__content">
     <div class="main__title">
       {{ movie.title }}
     </div>
 
-      <div class="star_form">
-        <div id = "star__new" class="star__new">
-            <form action="" method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-            <div class="comment__star">
-              {{ form.star }}
-            </div>
-            <div class="star__input">
-              <i id = "one" class="fas fa-star"></i>
-              <i id = "two" class="fas fa-star"></i>
-              <i id = "three" class="fas fa-star"></i>
-              <i id = "four" class="fas fa-star"></i>
-              <i id = "five" class="fas fa-star"></i>
-            </div>
+    <div class="star_form">
+      <div id="star__new" class="star__new">
+        <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="comment__star">
+            {{ form.star }}
+          </div>
+          <div class="star__input">
+            <i id="one" class="fas fa-star"></i>
+            <i id="two" class="fas fa-star"></i>
+            <i id="three" class="fas fa-star"></i>
+            <i id="four" class="fas fa-star"></i>
+            <i id="five" class="fas fa-star"></i>
+          </div>
+            <button id="btn" type="submit"><span>평가하기</span></button>
+            <a href="{% url 'watcha:score' movie.title %}"><div class="restar">수정하기</div></a>
+        </form>
 
-            <button id = "btn" type="submit"><span>평가하기</span></button>
-            </form>
+      </div>
+    </div>
 
-        </div>
-    </div>
-  <div class="info__box">
-    <div class="main__poster">
-      <img src="{{ movie.poster }}">
-    </div>
-    <div class="main__info">
-        감독:  {{ movie.director_set }}<br><br>
-        출연진:  {{ movie.cast_set }}<br><br>
-        줄거리:  {{ movie.content }}<br><br>
+    <div class="info__box">
+      <div class="main__poster">
+        <img src="{{ movie.poster }}">
+      </div>
+      <div class="main__info">
+        감독: {{ movie.director_set }}<br><br>
+        출연진: {{ movie.cast_set }}<br><br>
+        줄거리: {{ movie.content }}<br><br>
         개봉일: {{ movie.pubDate }}<br><br>
         장르: {{ movie.genre_set }}<br><br>
         국가: {{ movie.country_set }}<br><br>
-    </div>
-  </div>
-
-  <div class="comment_set">
-    <div id = "comment" class="comment__new">
-           <a href="{% url 'watcha:comment' movie.title %}" class="top-menu"><span class="glyphicon glyphicon-plus">코멘트 작성하기</span></a>
+      </div>
     </div>
 
+    <div class="comment_set">
+      <div id="comment" class="comment__new">
+        <a href="{% url 'watcha:comment' movie.title %}" class="top-menu"><span class="glyphicon glyphicon-plus">코멘트 작성하기</span></a>
+      </div>
 
-  </div>
+
+    </div>
 
 
-<!--     <div id = "score" class="comment__new">
-          <a href="{% url 'watcha:score' movie.title %}" class="top-menu"><span id="score__s" class="glyphicon glyphicon-plus">평점 작성하기</span></a>
-    </div> -->
+    <!--     <div id = "score" class="comment__new">
+              <a href="{% url 'watcha:score' movie.title %}" class="top-menu"><span id="score__s" class="glyphicon glyphicon-plus">평점 작성하기</span></a>
+        </div> -->
 
     <div class="liner">
 
-       
+
     </div>
     <div class="comment">
       {% for comment in comment_list %}
       <div class="comment__box">
         <br>
         작성자 : {{ comment.author }}
-        <a class="edit" href="{% url 'watcha:comment_edit' movie.title %}"><span class="glyphicon glyphicon-pencil">수정하기</span></a>
+        <a class="edit" href="{% url 'watcha:comment_edit' movie.title %}"><span
+                class="glyphicon glyphicon-pencil">수정하기</span></a>
         <a class="delete" href="{% url 'watcha:comment_delete' comment.pk %}"><span class="glyphicon glyphicon-remove">삭제하기</span></a>
         <br>
         <br>
@@ -94,7 +99,7 @@
         내용 : {{ comment.comment }}
         <br>
         <br>
-        <span class="star"><i class="fas fa-star"></i> 3 
+        <span class="star"><i class="fas fa-star"></i> {{ score_list.star }} 
         </span>
         <br>
       </div>
@@ -116,158 +121,148 @@
       {% endfor %}
 
     </div> -->
+    </div>
   </div>
-</div>
 
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-<script type="text/javascript">
+  <script
+          src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+  <script type="text/javascript">
 
-// 마우스 올릴 때
-    $('#one').on('mouseenter', mouseEnterPhoto_1);
-    $('#two').on('mouseenter', mouseEnterPhoto_2);
-    $('#three').on('mouseenter', mouseEnterPhoto_3);
-    $('#four').on('mouseenter', mouseEnterPhoto_4);
-    $('#five').on('mouseenter', mouseEnterPhoto_5);
-
-
-    $('#one').on('click', clickone);
-    function clickone() {
-      $('#star_score').val(1);
-    }
-    $('#two').on('click', clicktwo);
-    function clicktwo() {
-      $('#star_score').val(2);
-    }
-    $('#three').on('click', clickthree);
-    function clickthree() {
-      $('#star_score').val(3);
-    }
-    $('#four').on('click', clickfour);
-    function clickfour() {
-      $('#star_score').val(4);
-    }
-    $('#five').on('click', clickfive);
-    function clickfive() {
-      $('#star_score').val(5);
-    }
+      // 마우스 올릴 때
+      $('#one').on('mouseenter', mouseEnterPhoto_1);
+      $('#two').on('mouseenter', mouseEnterPhoto_2);
+      $('#three').on('mouseenter', mouseEnterPhoto_3);
+      $('#four').on('mouseenter', mouseEnterPhoto_4);
+      $('#five').on('mouseenter', mouseEnterPhoto_5);
 
 
+      $('#one').on('click', clickone);
 
-// // 버튼 그림자 
-//     $('#btn').on('mouseenter', mouseEnterPhoto_B);
-//     $('#btn').on('mouseleave', mouseLeavePhoto_B);
+      function clickone() {
+          $('#star_score').val(1);
+      }
 
+      $('#two').on('click', clicktwo);
 
+      function clicktwo() {
+          $('#star_score').val(2);
+      }
 
+      $('#three').on('click', clickthree);
 
+      function clickthree() {
+          $('#star_score').val(3);
+      }
 
+      $('#four').on('click', clickfour);
 
-// 별 1개
-    function mouseEnterPhoto_1() {
-      $('#one').css('color', 'yellow');
-      $('#two').css('color', 'gray');
-      $('#three').css('color', 'gray');
-      $('#four').css('color', 'gray');
-      $('#five').css('color', 'gray');
-    }
+      function clickfour() {
+          $('#star_score').val(4);
+      }
 
-// 별2개 
-  function mouseEnterPhoto_2() {
-      $('#one').css('color', 'yellow');
-      $('#two').css('color', 'yellow');
-      $('#three').css('color', 'gray');
-      $('#four').css('color', 'gray');
-      $('#five').css('color', 'gray');
-    }
-// 별3개 
-  function mouseEnterPhoto_3() {
-      $('#one').css('color', 'yellow');
-      $('#two').css('color', 'yellow');
-      $('#three').css('color', 'yellow');
-      $('#four').css('color', 'gray');
-      $('#five').css('color', 'gray');
-    }
-// 별4개
-  function mouseEnterPhoto_4() {
-      $('#one').css('color', 'yellow');
-      $('#two').css('color', 'yellow');
-      $('#three').css('color', 'yellow');
-      $('#four').css('color', 'yellow');
-      $('#five').css('color', 'gray');
+      $('#five').on('click', clickfive);
 
-    }
-// 별5개 
-  function mouseEnterPhoto_5() {
-      $('#one').css('color', 'yellow');
-      $('#two').css('color', 'yellow');
-      $('#three').css('color', 'yellow');
-      $('#four').css('color', 'yellow');
-      $('#five').css('color', 'yellow');
-    }
+      function clickfive() {
+          $('#star_score').val(5);
+      }
 
 
+      // // 버튼 그림자
+      //     $('#btn').on('mouseenter', mouseEnterPhoto_B);
+      //     $('#btn').on('mouseleave', mouseLeavePhoto_B);
 
 
-  // -------------------------------------------
+      // 별 1개
+      function mouseEnterPhoto_1() {
+          $('#one').css('color', 'yellow');
+          $('#two').css('color', 'gray');
+          $('#three').css('color', 'gray');
+          $('#four').css('color', 'gray');
+          $('#five').css('color', 'gray');
+      }
 
-  // $('#comment').on('mouseenter', Mouseenter);
-  // $('#comment').on('mouseleave', Mouseleave);
+      // 별2개
+      function mouseEnterPhoto_2() {
+          $('#one').css('color', 'yellow');
+          $('#two').css('color', 'yellow');
+          $('#three').css('color', 'gray');
+          $('#four').css('color', 'gray');
+          $('#five').css('color', 'gray');
+      }
 
-  // function Mouseenter() {
-  //   $('#comment').css('box-shadow', '7px 7px #e1e1e1');
-  //   $('#comment__s').css('color', 'black');
-  // }
+      // 별3개
+      function mouseEnterPhoto_3() {
+          $('#one').css('color', 'yellow');
+          $('#two').css('color', 'yellow');
+          $('#three').css('color', 'yellow');
+          $('#four').css('color', 'gray');
+          $('#five').css('color', 'gray');
+      }
 
-  //  function Mouseleave() {
-  //   $('#comment').css('box-shadow', 'none');
-  //   $('#comment__s').css('color', 'white');
-  // }
+      // 별4개
+      function mouseEnterPhoto_4() {
+          $('#one').css('color', 'yellow');
+          $('#two').css('color', 'yellow');
+          $('#three').css('color', 'yellow');
+          $('#four').css('color', 'yellow');
+          $('#five').css('color', 'gray');
 
+      }
 
-  $('#btn').on('mouseenter', ButtonEnter);
-  $('#btn').on('mouseleave', ButtonLeave);
-
-
-  function ButtonEnter() {
-    $('#btn').css('background-color', '#ff2f6e');
-  }
-  function ButtonLeave() {
-    $('#btn').css('background-color', 'gray');
-  }
-
-
-</script>
-
-
-
-
-
-
-
-
-
-
-
+      // 별5개
+      function mouseEnterPhoto_5() {
+          $('#one').css('color', 'yellow');
+          $('#two').css('color', 'yellow');
+          $('#three').css('color', 'yellow');
+          $('#four').css('color', 'yellow');
+          $('#five').css('color', 'yellow');
+      }
 
 
+      // -------------------------------------------
+
+      // $('#comment').on('mouseenter', Mouseenter);
+      // $('#comment').on('mouseleave', Mouseleave);
+
+      // function Mouseenter() {
+      //   $('#comment').css('box-shadow', '7px 7px #e1e1e1');
+      //   $('#comment__s').css('color', 'black');
+      // }
+
+      //  function Mouseleave() {
+      //   $('#comment').css('box-shadow', 'none');
+      //   $('#comment__s').css('color', 'white');
+      // }
 
 
+      $('#btn').on('mouseenter', ButtonEnter);
+      $('#btn').on('mouseleave', ButtonLeave);
 
 
+      function ButtonEnter() {
+          $('#btn').css('background-color', '#ff2f6e');
+      }
 
-<!--  {{ movie.title }}
-      {{ movie.content }}
-      <a href="{% url 'watcha:comment' movie.title %}" class="top-menu"><span class="glyphicon glyphicon-plus">평가 작성</span></a>
-      <div class="comment">
-      {% for comment in comment_list %}
-        <br>
-        작성자 : {{ comment.author }}
-        <br>
-        내용 : {{ comment.comment }}
-        <br>
-        별점 : {{ comment.star }}
-        <br>
-      {% endfor %} -->
+      function ButtonLeave() {
+          $('#btn').css('background-color', 'gray');
+      }
+
+
+  </script>
+
+
+  <!--  {{ movie.title }}
+        {{ movie.content }}
+        <a href="{% url 'watcha:comment' movie.title %}" class="top-menu"><span class="glyphicon glyphicon-plus">평가 작성</span></a>
+        <div class="comment">
+        {% for comment in comment_list %}
+          <br>
+          작성자 : {{ comment.author }}
+          <br>
+          내용 : {{ comment.comment }}
+          <br>
+          별점 : {{ comment.star }}
+          <br>
+        {% endfor %} -->

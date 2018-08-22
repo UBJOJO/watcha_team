@@ -16,15 +16,16 @@ import json
 from django.http import JsonResponse
 from django.core.serializers.json import DjangoJSONEncoder
 
+
 # json_serializer = serializers.get_serializer("json")()
 # auto_box = json_serializer.serialize(movie_list, ensure_ascii=False)
 
 
 # Create your views here.
 
-box = []
-for a in Movie.objects.all():
-    box.append(a.title)
+# box = []
+# for a in Movie.objects.all():
+#     box.append(a.title)
 
 
 def main(request):
@@ -108,7 +109,7 @@ def search(request):
                         content = movie.get('subtitle')
                         poster = movie.get('image')
                         Movie.objects.create(title=title, content=content, poster=poster)  # 필드 생성/ 제공받는 api 저장
-                print(box)
+                # print(box)
                 # json_serializer = serializers.get_serializer("json")()
                 # movie_json = json_serializer.serialize(list_movie, ensure_ascii=False)
                 return render(request, 'watcha/watcha_search.html',
@@ -135,7 +136,6 @@ def comment_new(request, title):
             form = CommentForm()
             movie = get_object_or_404(Movie, title=title)
         return render(request, 'watcha/watcha_comment.html', {'form': form, 'movie': movie})
-
 
 
 def comment_edit(request, title):
@@ -201,7 +201,6 @@ def score_edit(request, title):
     return render(request, 'watcha/watcha_detail.html', {'form': form, 'movie': movie})
 
 
-
 # def comment_edit(request, title):
 #     comment = get_object_or_404(Comment, movie_name=title, author=request.user)
 #     if request.method == "POST":
@@ -219,7 +218,6 @@ def score_edit(request, title):
 #     return render(request, 'watcha/watcha_comment.html', {'form': form, 'movie': movie})
 
 
-
 def score_delete(request, pk):
     score = get_object_or_404(Score, pk=pk)
     score.title = score.movie_name
@@ -232,15 +230,16 @@ def profile(request):
 
 
 def flavor(request):
-    movie_list = Score.objects.filter(author = request.user)
+    movie_list = Score.objects.filter(author=request.user)
     movie_list_seen = []
     for movie in movie_list:
-        movie_list_seen.append(Movie.objects.filter(title = movie.movie_name))
+        movie_list_seen.append(Movie.objects.filter(title=movie.movie_name))
     movie_list_not_seen = Movie.objects.all()
     for movie in movie_list_not_seen:
-        if Score.objects.filter(movie_name = movie.title, author = request.user):
-            movie_list_not_seen = movie_list_not_seen.exclude(title = movie.title)
-    return render(request, 'watcha/watcha_flavor.html', {'movie_list_seen': movie_list_seen,'movie_list_not_seen' : movie_list_not_seen})
+        if Score.objects.filter(movie_name=movie.title, author=request.user):
+            movie_list_not_seen = movie_list_not_seen.exclude(title=movie.title)
+    return render(request, 'watcha/watcha_flavor.html',
+                  {'movie_list_seen': movie_list_seen, 'movie_list_not_seen': movie_list_not_seen})
 
 
 class UserFormView(View):
