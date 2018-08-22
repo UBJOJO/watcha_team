@@ -29,8 +29,6 @@ for a in Movie.objects.all():
 
 def main(request):
     comment_num = Comment.objects.count()
-    print(comment_num)
-    print('1983798237992')
     return render(request, 'watcha/watcha_main.html', {'comment_num': comment_num})
 
 
@@ -130,7 +128,6 @@ def comment_new(request, title):
                 comment = form.save(commit=False)
                 comment.author = request.user
                 comment.comment = form.cleaned_data['comment']
-                # comment.star = form.cleaned_data['star']
                 comment.movie_name = Movie.objects.get(title=title).title
                 comment.save()
                 return redirect('watcha:detail', title=comment.movie_name)
@@ -138,6 +135,7 @@ def comment_new(request, title):
             form = CommentForm()
             movie = get_object_or_404(Movie, title=title)
         return render(request, 'watcha/watcha_comment.html', {'form': form, 'movie': movie})
+
 
 
 def comment_edit(request, title):
@@ -148,7 +146,6 @@ def comment_edit(request, title):
             comment = form.save(commit=False)
             comment.author = request.user
             comment.comment = form.cleaned_data['comment']
-            comment.star = form.cleaned_data['star']
             comment.movie_name = Movie.objects.get(title=title).title
             comment.save()
             return redirect('watcha:detail', title=comment.movie_name)
@@ -167,6 +164,7 @@ def comment_delete(request, pk):
 
 # 평점 추가, 수정, 삭제
 def score_new(request, title):
+    print('뉴 스코어 시작')
     if Score.objects.filter(movie_name=title, author=request.user):
         return redirect('watcha:score_edit', title=title)
     else:
@@ -178,14 +176,15 @@ def score_new(request, title):
                 score.star = form.cleaned_data['star']
                 score.movie_name = title
                 score.save()
-                return redirect('watcha:score', title=score.movie_name)
+                return redirect('watcha:detail', title=score.movie_name)
         else:
             form = ScoreForm()
             movie = get_object_or_404(Movie, title=title)
-        return render(request, 'watcha/watcha_score.html', {'form': form, 'movie': movie})
+        return render(request, 'watcha/watcha_detail.html', {'form': form, 'movie': movie})
 
 
 def score_edit(request, title):
+    print('에디트 실행됨')
     score = get_object_or_404(Score, movie_name=title, author=request.user)
     if request.method == "POST":
         form = ScoreForm(request.POST, instance=score)
@@ -193,13 +192,32 @@ def score_edit(request, title):
             score = form.save(commit=False)
             score.author = request.user
             score.star = form.cleaned_data['star']
-            score.movie_name = title
+            score.movie_name = Movie.objects.get(title=title).title
             score.save()
             return redirect('watcha:detail', title=score.movie_name)
     else:
         form = ScoreForm(instance=score)
         movie = get_object_or_404(Movie, title=title)
-    return render(request, 'watcha/watcha_score.html', {'form': form, 'movie': movie})
+    return render(request, 'watcha/watcha_detail.html', {'form': form, 'movie': movie})
+
+
+
+# def comment_edit(request, title):
+#     comment = get_object_or_404(Comment, movie_name=title, author=request.user)
+#     if request.method == "POST":
+#         form = CommentForm(request.POST, instance=comment)
+#         if form.is_valid():
+#             comment = form.save(commit=False)
+#             comment.author = request.user
+#             comment.comment = form.cleaned_data['comment']
+#             comment.movie_name = Movie.objects.get(title=title).title
+#             comment.save()
+#             return redirect('watcha:detail', title=comment.movie_name)
+#     else:
+#         form = CommentForm(instance=comment)
+#         movie = get_object_or_404(Movie, title=title)
+#     return render(request, 'watcha/watcha_comment.html', {'form': form, 'movie': movie})
+
 
 
 def score_delete(request, pk):

@@ -25,7 +25,6 @@ class Comment(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE, blank=True, null=True)
     movie_name = models.CharField(max_length=200, verbose_name='영화 제목', blank=True, null=True)
     comment = models.CharField(max_length=200, verbose_name='이 작품에 대한 생각을 자유롭게 표현해주세요.', blank=True, null=True)
-    star = models.IntegerField(verbose_name='별점 매기기', blank=True, null=True)
 
     def __str__(self):
         return self.comment

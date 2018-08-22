@@ -10,20 +10,14 @@ def min_length_3_validator(value):
 
 class CommentForm(forms.ModelForm):
     comment = forms.CharField(widget=forms.TextInput({"placeholder": "자유롭게 코멘트를 입력하세요 :)"}))
-    # star = forms.CharField(widget=forms.TextInput(attrs={'id': 'star_id'}))
-    # attrs = {'class': 'some_class',
-    #          'id': 'some_id'})
 
     class Meta:
         model = Comment
-        fields = ['comment', 'star', ]
+        fields = ['comment', ]
 
 
 class ScoreForm(forms.ModelForm):
     star = forms.CharField(widget=forms.TextInput(attrs={'id': 'star_score'}))
-
-    # attrs = {'class': 'some_class',
-    #          'id': 'some_id'})
 
     class Meta:
         model = Score
@@ -31,7 +25,6 @@ class ScoreForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
-    # username = forms.CharField(widget=forms.TextInput({"placeholder": "아이디"}))
     email = forms.CharField(widget=forms.TextInput({"placeholder": "이메일"}))
     password = forms.CharField(widget=forms.PasswordInput({"placeholder": "비밀번호"}))
     username = forms.CharField(widget=forms.TextInput(attrs={'id': 'username_id', 'placeholder': '아이디'}))
