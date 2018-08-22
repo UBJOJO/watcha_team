@@ -57,7 +57,7 @@ def detail(request, title):
     comment_list = Comment.objects.filter(movie_name=title)
     score_list = Score.objects.filter(movie_name=title)
     form = ScoreForm(request.POST)
-
+    print(score_list)
     if request.method == 'POST':
         form = ScoreForm(request.POST)
         if form.is_valid():
