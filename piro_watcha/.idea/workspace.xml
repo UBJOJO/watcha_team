@@ -151,7 +151,7 @@
       <path value="$PROJECT_DIR$/watcha/static/script/jquery-ui/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="21" />
     <option name="width" value="918" />
     <option name="height" value="1032" />
