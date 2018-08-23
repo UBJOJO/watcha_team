@@ -187,12 +187,25 @@
     $('#shadow__login').on('mouseleave', OnmouseLeaveLogin);
 
     function OnmouseEnterLogin() {
-        $('#shadow__login').css('color', 'black');
+        $('#shadow__login').css('color', 'skyblue');
     }
 
     function OnmouseLeaveLogin() {
         $('#shadow__login').css('color', 'white');
     }
+
+    $('#shadow__register').on('mouseenter', OnmouseEnterReg);
+    $('#shadow__register').on('mouseleave', OnmouseLeaveReg);
+
+    function OnmouseEnterReg() {
+        $('#shadow__register').css('color', 'skyblue');
+    }
+
+    function OnmouseLeaveReg() {
+        $('#shadow__register').css('color', 'white');
+            }
+
+
 </script>
 </body>
 </html>

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebb471d3-5fe2-4caa-9515-dee448bf6401" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/piro_watcha/piro_watcha/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/piro_watcha/piro_watcha/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/piro_watcha/watcha/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/piro_watcha/watcha/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/piro_watcha/watcha/static/css/watcha_register.css" beforeDir="false" afterPath="$PROJECT_DIR$/piro_watcha/watcha/static/css/watcha_register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/piro_watcha/watcha/templates/watcha/watcha_register.html" beforeDir="false" afterPath="$PROJECT_DIR$/piro_watcha/watcha/templates/watcha/watcha_register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/piro_watcha/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/piro_watcha/db.sqlite3" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -152,7 +149,7 @@
       <path value="$PROJECT_DIR$/piro_watcha/watcha/static/script/jquery-ui/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="21" />
     <option name="width" value="918" />
     <option name="height" value="1032" />
@@ -180,6 +177,21 @@
               <item name="watcha_team" type="b2602c69:ProjectViewProjectNode" />
               <item name="watcha_team" type="462c0819:PsiDirectoryNode" />
               <item name="piro_watcha" type="462c0819:PsiDirectoryNode" />
+              <item name="watcha" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="watcha_team" type="b2602c69:ProjectViewProjectNode" />
+              <item name="watcha_team" type="462c0819:PsiDirectoryNode" />
+              <item name="piro_watcha" type="462c0819:PsiDirectoryNode" />
+              <item name="watcha" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="watcha_team" type="b2602c69:ProjectViewProjectNode" />
+              <item name="watcha_team" type="462c0819:PsiDirectoryNode" />
+              <item name="piro_watcha" type="462c0819:PsiDirectoryNode" />
+              <item name="watcha" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="watcha" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -253,8 +265,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
