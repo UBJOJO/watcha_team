@@ -13,7 +13,7 @@
   <form action="" method="post" enctype="multipart/form-data">
   {% csrf_token %}
 	<div class="input">
-		<span id = "val__ID">10자리이상 입력하세요</span>
+		<span id = "val__ID">10자리이하로 입력하세요</span>
 	<div class="input__ID">
 		{{ form.username }}
 	</div>
@@ -21,6 +21,7 @@
 	<div class="input__ID">
 		{{ form.email }}
 	</div>
+		<span id = "val__PW">10자리이상 입력하세요</span>
 	<div id = "input__PW" class="input__PW">
 		{{ form.password }}
 	</div>
@@ -54,24 +55,35 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 <script>
-  document.onkeydown=function() {
-   if(event.srcElement.type != "text" && event.srcElement.type != "textarea") {
-    if(event.keyCode==8) return false;
-  }}
 
-    $('#username_id').on('keydown', val__ID);
+    $('#username_id').on('keydown', valid_id);
 
-    function val__ID() {
-    	var textLength = $('#username_id').val().length
+    function valid_id() {
     	console.log(textLength)
-    	if (textLength < 8) {
-    		$('#val__ID').css('color', '#ff2f6e;');
+    	var textLength = $('#username_id').val().length
+    	if (textLength > 9) {
+    		$('#val__ID').css('color', '#ff2f6e');
+    	}
+    	else {
+    		$('#val__ID').css('color', 'white');
     	}
     }
 
+    $('#username_pw').on('keydown', valid_pw);
 
+    function valid_pw() {
+    	console.log(textLength)
+    	var textLength = $('#username_pw').val().length
+    	if (textLength > 9) {
+    		$('#val__PW').css('color', '#ff2f6e');
+    	}
+    	else {
+    		$('#val__PW').css('color', 'white');
+    	}
+    }
     
 
+    
 
 
 
@@ -92,5 +104,9 @@
     function LeaveMouseSubmit__FB() {
         $('#input__submit__FB').css('box-shadow', 'None');
     }
+
+
+
+
 </script>
 </html>

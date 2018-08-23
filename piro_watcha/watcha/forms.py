@@ -26,7 +26,7 @@ class ScoreForm(forms.ModelForm):
 
 class UserForm(forms.ModelForm):
     email = forms.CharField(widget=forms.TextInput({"placeholder": "이메일"}))
-    password = forms.CharField(widget=forms.PasswordInput({"placeholder": "비밀번호"}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'id': 'username_pw', 'placeholder': '비밀번호'}))
     username = forms.CharField(widget=forms.TextInput(attrs={'id': 'username_id', 'placeholder': '아이디'}))
 
     class Meta:
