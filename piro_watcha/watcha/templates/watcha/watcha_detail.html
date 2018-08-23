@@ -99,12 +99,15 @@
         내용 : {{ comment.comment }}
         <br>
         <br>
-        <span class="star"><i class="fas fa-star"></i> 
+        <span class="star">
+          {% for score in score_list %}
+          <i class="fas fa-star"></i> {{ score.star }}
+          {% endfor %}
         </span>
         <br>
       </div>
       {% endfor %}
-      {{ score_list.star }}
+
 
       <!-- <div class="score">
       {% for score in score_list %}
