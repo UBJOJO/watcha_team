@@ -18,4 +18,5 @@ urlpatterns = [
     path('loginpage/', views.loginpage, name='login'),
     path('newaccount/', views.UserFormView.as_view(), name='newaccount'),
     path('logout_user/', views.logout_user, name='logout_user'),
+    path('flower/', views.flower, name='flower'),
 ]

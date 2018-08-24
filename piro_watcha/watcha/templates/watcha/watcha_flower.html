@@ -1,0 +1,555 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+   <title>영화제목(년도) :: 왓챠</title>
+   <meta charset="utf-8">
+   <link rel="stylesheet" type="text/css" href="{% static 'css/watcha_flower.css' %}">
+</head>
+<body>
+<div id="root">
+   <div class="appself">
+      <div class="navcontainer">
+         <header class="topnavtab">
+            <nav>
+               <div class="grid">
+                  <div class="row">
+                     <ul class="NavUl">
+                        <li class="Navlogo">
+                           <a href="#">
+                              <span class="logo">WATCHA</span>
+                           </a>
+                        </li>
+                        <li class="Navlist">
+                           <a title="Userpage" href="#">
+                              <div class="ProfilePhoto">
+                                 <div class="ProfilePhotoImg"></div>
+                                 <div class="ImgContainer">
+                                    <img class="defaultImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgZmlsbD0iI0UwRTBFMCI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0yNCAyMS4yNzhhOC41NyA4LjU3IDAgMCAxLTguNTcxLTguNTdBOC41NzEgOC41NzEgMCAxIDEgMjQgMjEuMjc3TTQzLjUxOSA0My44NjVjLjU2NCAwIDEuMDMzLS40NjggMS4wMDMtMS4wMzFDNDMuOTYzIDMyLjQyNCAzNC45ODkgMjQuMTUgMjQgMjQuMTVjLTEwLjk4OSAwLTE5Ljk2MyA4LjI3NC0yMC41MjIgMTguNjgzLS4wMy41NjMuNDM5IDEuMDMgMS4wMDMgMS4wM2gzOS4wMzh6Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="User의 사진">
+                                 </div>
+                              </div>
+                           </a>
+                        </li>
+                     </ul>
+                     <div class="SearchContainer">
+                        <div class="SearchFormBlock">
+                           <form>
+                              <div class="SearchInputBlock">
+                                 <input type="search" class="Input" name="search" label="검색" placeholder="영화제목" autocomplete="off">
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </nav>
+         </header>
+         <section class="navmain">
+            <div class="contentpage">
+               <div class="content">
+                  <div class="contentbackground">
+                     <section class="contentjumbotron">
+                        <div class="postercontainer">
+                           <div class="blurposterblock">
+                              <div class="leftbackground" color="#403230"></div>
+                              <div class="blurposter">
+                                 <div class="leftgradient" color="#403230"></div>
+                                 <div class="rightgradient" color="#413834"></div>
+                              </div>
+                              <div class="rightbackground" color="#413834"></div>
+                              <div class="dimmedlayer"></div>
+                           </div>
+                           <div class="MaxWidthGrid">
+                              <div class="MaxWidthRow">
+                                 <div class="MaxWidthCol">
+                                    <div class="posterwithrankinginfoblock">
+                                       <div class="posterblock">
+                                          <div class="poster" alt="~의 포스터"></div>
+                                       </div>
+                                       <ul class="rankinfolist">
+                                          
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="pane">
+                           <div class="MaxWidthGrid">
+                              <div class="MaxWidthRow">
+                                 <div class="MaxWidthCol">
+                                    <div class="paneinner">
+                                       <h1 class="panetitle">영화제목</h1>
+                                       <div class="panedetail">년도 / 장르 / 국적</div>
+                                       <div class="contentratings">
+                                          평점 ★3.3<!-- --> <!-- --> (2만명) <!-- -->&nbsp;&nbsp;/&nbsp;&nbsp;<em>예상 ★3.8</em>
+                                       </div>
+                                       <div class="buttonblock">
+                                          <div class="contentactionbutton">
+                                             <button class="actionbutton">
+                                                <span class="statuswithimg">
+                                                   <span class="actionstatus">영화평가하기</span>
+                                                </span>
+                                             </button>
+                                             <button class="actiondropdownbutton">▼</button>
+                                          </div>
+                                       </div>
+                                       <div class="ratingcontrol">
+                                          <div class="ratingtitle">평가하기</div>
+                                          <div class="starscontainer">
+                                             <div class="unratedstars">
+                                                <span class="greystar">★</span>
+                                                <span class="greystar">★</span>
+                                                <span class="greystar">★</span>
+                                                <span class="greystar">★</span>
+                                                <span class="greystar">★</span>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                     <div class="contentsection">
+                        <div class="MaxWidthGrid">
+                           <div class="MaxWidthRow">
+                              <div class="MaxWidthColl">
+                                 <div class="contentsectionblock">
+                                    <div class="roundedcornerblocka">
+                                       <div class="lastdividerdisable">
+                                          <section class="sectionwithheader">
+                                             <div class="grid">
+                                                <div class="row">
+                                                   <header class="sectionheader">
+                                                      <h2 class="sectionheadertitle">기본 정보</h2>
+                                                      <div class="sectionheaderright">
+                                                         <div class="viewmore">
+                                                            <a href="#">더보기</a>
+                                                         </div>
+                                                      </div>
+                                                   </header>
+                                                </div>
+                                             </div>
+                                             <div class="grid">
+                                                <div class="row">
+                                                   <article class="overview">
+                                                      <div class="summary">
+                                                         영화제목
+                                                         <br>
+                                                         <span class="overviewmeta">년도 / 국가 / 장르</span>
+                                                         <br>
+                                                         <span class="overviewmeta">상영시간
+                                                         </span>
+                                                      </div>
+                                                      <div class="story">
+                                                         <div class="storytext" style="white-space: pre-line;">
+                                                            여기는 줄거리 미리보기
+                                                         </div>
+                                                      </div>
+                                                   </article>
+                                                </div>
+                                             </div>
+                                          </section>
+                                          <hr class="rowmargindivider">
+                                          <section class="sectionwithheader">
+                                             <div class="grid">
+                                                <div class="row">
+                                                   <header class="sectionheader">
+                                                      <h2 class="sectionheadertitle">출연/제작</h2>
+                                                   </header>
+                                                </div>
+                                             </div>
+                                             <div class="people">
+                                                <div class="grid">
+                                                   <div class="row">
+                                                      <ul class="peoplelist">
+                                                         <li class="person">
+                                                            <a class="peoplelink" href="#">
+                                                               <div class="peopleimg">
+                                                                  <div class="peoplephoto">
+                                                                     <div class="peoplephotoimg"></div>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="peopleinfo">
+                                                                  <div class="peopletitle">
+                                                                     <div class="peopleinfoname">이름</div>
+                                                                     <div class="peopleinfosubtitle">정보</div>
+                                                                  </div>
+                                                               </div>
+                                                            </a>
+                                                         </li>
+                                                         <li class="person">
+                                                            <a class="peoplelink" href="#">
+                                                               <div class="peopleimg">
+                                                                  <div class="peoplephoto">
+                                                                     <div class="peoplephotoimg"></div>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="peopleinfo">
+                                                                  <div class="peopletitle">
+                                                                     <div class="peopleinfoname">이름</div>
+                                                                     <div class="peopleinfosubtitle">정보</div>
+                                                                  </div>
+                                                               </div>
+                                                            </a>
+                                                         </li>
+                                                         <li class="person">
+                                                            <a class="peoplelink" href="#">
+                                                               <div class="peopleimg">
+                                                                  <div class="peoplephoto">
+                                                                     <div class="peoplephotoimg"></div>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="peopleinfo">
+                                                                  <div class="peopletitle">
+                                                                     <div class="peopleinfoname">이름</div>
+                                                                     <div class="peopleinfosubtitle">정보</div>
+                                                                  </div>
+                                                               </div>
+                                                            </a>
+                                                         </li>
+                                                         <li class="person">
+                                                            <a class="peoplelink" href="#">
+                                                               <div class="peopleimg">
+                                                                  <div class="peoplephoto">
+                                                                     <div class="peoplephotoimg"></div>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="peopleinfo">
+                                                                  <div class="peopletitle">
+                                                                     <div class="peopleinfoname">이름</div>
+                                                                     <div class="peopleinfosubtitle">정보</div>
+                                                                  </div>
+                                                               </div>
+                                                            </a>
+                                                         </li>
+                                                         <li class="person">
+                                                            <a class="peoplelink" href="#">
+                                                               <div class="peopleimg">
+                                                                  <div class="peoplephoto">
+                                                                     <div class="peoplephotoimg"></div>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="peopleinfo">
+                                                                  <div class="peopletitle">
+                                                                     <div class="peopleinfoname">이름</div>
+                                                                     <div class="peopleinfosubtitle">정보</div>
+                                                                  </div>
+                                                               </div>
+                                                            </a>
+                                                         </li>
+                                                         <li class="person">
+                                                            <a class="peoplelink" href="#">
+                                                               <div class="peopleimg">
+                                                                  <div class="peoplephoto">
+                                                                     <div class="peoplephotoimg"></div>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="peopleinfo">
+                                                                  <div class="peopletitle">
+                                                                     <div class="peopleinfoname">이름</div>
+                                                                     <div class="peopleinfosubtitle">정보</div>
+                                                                  </div>
+                                                               </div>
+                                                            </a>
+                                                         </li>
+                                                      </ul>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </section>
+                                          <hr class="rowmargindivider">
+                                          <section class="sectionwithheader">
+                                             <div class="grid">
+                                                <div class="row">
+                                                   <header class="sectionheader">
+                                                      <h2 class="sectionheadertitle">별점 그래프</h2>
+                                                      <span class="ratingstarheaderright">
+                                                         평균<!----> ★<!---->3.3
+                                                         <br>
+                                                         <strong>(<!---->2만명<!---->)</strong>
+                                                      </span>
+                                                   </header>
+                                                </div>
+                                             </div>
+                                             <div class="grid">
+                                                <div class="row">
+                                                   <div class="ratinggraph">
+                                                      <div class="barcontainer"></div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </section>
+                                          <hr class="rowmargindivider">
+                                          <section class="sectionwithheader">
+                                             <div class="grid">
+                                                <div class="row">
+                                                   <header class="sectionheader">
+                                                      <h2 class="sectionheadertitle">코멘트</h2>
+                                                   </header>
+                                                </div>
+                                             </div>
+                                             <div class="comment">
+                                                <div class="grid">
+                                                   <div class="row">
+                                                      <ul class="commentsection">
+                                                         <li class="commentlist">
+                                                            <div class="commentitem">
+                                                               <div class="commenttitle">
+                                                                  <div class="commentprofile">
+                                                                     <a class="commentprofilelink" href="#">
+                                                                        <div class="commentprofilephoto">
+                                                                           <div class="commentprofileimg"></div>
+                                                                        </div>
+                                                                        <span class="commentprofilename">이름</span>
+                                                                     </a>
+                                                                  </div>
+                                                                  <div class="commentstar">
+                                                                     ★ <span>3.5</span>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="commenttext">
+                                                                  <a class="commenttextlink" href="#">
+                                                                     <div class="commentmessage">
+                                                                        <div class="message" style="white-space: pre-line;">여기는 코멘트 내용</div>
+                                                                     </div>
+                                                                  </a>
+                                                               </div>
+                                                            </div>
+                                                         </li>
+                                                         <li class="commentlist">
+                                                            <div class="commentitem">
+                                                               <div class="commenttitle">
+                                                                  <div class="commentprofile">
+                                                                     <a class="commentprofilelink" href="#">
+                                                                        <div class="commentprofilephoto">
+                                                                           <div class="commentprofileimg"></div>
+                                                                        </div>
+                                                                        <span class="commentprofilename">이름</span>
+                                                                     </a>
+                                                                  </div>
+                                                                  <div class="commentstar">
+                                                                     ★ <span>3.5</span>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="commenttext">
+                                                                  <a class="commenttextlink" href="#">
+                                                                     <div class="commentmessage">
+                                                                        <div class="message" style="white-space: pre-line;">여기는 코멘트 내용</div>
+                                                                     </div>
+                                                                  </a>
+                                                               </div>
+                                                            </div>
+                                                         </li>
+                                                      </ul>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </section>
+                                          <hr class="rowmargindivider">
+                                          <div>
+                                             <section class="sectionwithheader">
+                                             <div class="grid">
+                                                <div class="row">
+                                                   <header class="sectionheader">
+                                                      <h2 class="sectionheadertitle">비슷한 작품</h2>
+                                                   </header>
+                                                </div>
+                                             </div>
+                                             <div class="grid">
+                                                <div class="row">
+                                                   <ul class="contentgrid">
+                                                      <li class="contentlist">
+                                                         <a href="#">
+                                                            <div class="contentposter">
+                                                               <div class="posterimg">
+                                                                  <img class="posterimgimg" src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_700,q_80,w_490/v1466064839/w4mnbwtp73hcd4ls0st0.jpg">
+                                                               </div>
+                                                            </div>
+                                                            <div class="contentinfo">
+                                                               <div class="contenttitle">이름</div>
+                                                               <div>
+                                                                  <div class="predictedrating">예상 ★ 3.3</div>
+                                                                  <div class="contenttype">콘텐츠타입</div>
+                                                               </div>
+                                                            </div>
+                                                         </a>
+                                                      </li>
+                                                      <li class="contentlist">
+                                                         <a href="#">
+                                                            <div class="contentposter">
+                                                               <div class="posterimg">
+                                                                  <img class="posterimgimg" src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_700,q_80,w_490/v1466064839/w4mnbwtp73hcd4ls0st0.jpg">
+                                                               </div>
+                                                            </div>
+                                                            <div class="contentinfo">
+                                                               <div class="contenttitle">이름</div>
+                                                               <div>
+                                                                  <div class="predictedrating">예상 ★ 3.3</div>
+                                                                  <div class="contenttype">콘텐츠타입</div>
+                                                               </div>
+                                                            </div>
+                                                         </a>
+                                                      </li>
+                                                      <li class="contentlist">
+                                                         <a href="#">
+                                                            <div class="contentposter">
+                                                               <div class="posterimg">
+                                                                  <img class="posterimgimg" src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_700,q_80,w_490/v1466064839/w4mnbwtp73hcd4ls0st0.jpg">
+                                                               </div>
+                                                            </div>
+                                                            <div class="contentinfo">
+                                                               <div class="contenttitle">이름</div>
+                                                               <div>
+                                                                  <div class="predictedrating">예상 ★ 3.3</div>
+                                                                  <div class="contenttype">콘텐츠타입</div>
+                                                               </div>
+                                                            </div>
+                                                         </a>
+                                                      </li>
+                                                      <li class="contentlist">
+                                                         <a href="#">
+                                                            <div class="contentposter">
+                                                               <div class="posterimg">
+                                                                  <img class="posterimgimg" src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_700,q_80,w_490/v1466064839/w4mnbwtp73hcd4ls0st0.jpg">
+                                                               </div>
+                                                            </div>
+                                                            <div class="contentinfo">
+                                                               <div class="contenttitle">이름</div>
+                                                               <div>
+                                                                  <div class="predictedrating">예상 ★ 3.3</div>
+                                                                  <div class="contenttype">콘텐츠타입</div>
+                                                               </div>
+                                                            </div>
+                                                         </a>
+                                                      </li>
+                                                      <li class="contentlist">
+                                                         <a href="#">
+                                                            <div class="contentposter">
+                                                               <div class="posterimg">
+                                                                  <img class="posterimgimg" src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_700,q_80,w_490/v1466064839/w4mnbwtp73hcd4ls0st0.jpg">
+                                                               </div>
+                                                            </div>
+                                                            <div class="contentinfo">
+                                                               <div class="contenttitle">이름</div>
+                                                               <div>
+                                                                  <div class="predictedrating">예상 ★ 3.3</div>
+                                                                  <div class="contenttype">콘텐츠타입</div>
+                                                               </div>
+                                                            </div>
+                                                         </a>
+                                                      </li>
+                                                      <li class="contentlist">
+                                                         <a href="#">
+                                                            <div class="contentposter">
+                                                               <div class="posterimg">
+                                                                  <img class="posterimgimg" src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_700,q_80,w_490/v1466064839/w4mnbwtp73hcd4ls0st0.jpg">
+                                                               </div>
+                                                            </div>
+                                                            <div class="contentinfo">
+                                                               <div class="contenttitle">이름</div>
+                                                               <div>
+                                                                  <div class="predictedrating">예상 ★ 3.3</div>
+                                                                  <div class="contenttype">콘텐츠타입</div>
+                                                               </div>
+                                                            </div>
+                                                         </a>
+                                                      </li>
+                                                      <li class="contentlist">
+                                                         <a href="#">
+                                                            <div class="contentposter">
+                                                               <div class="posterimg">
+                                                                  <img class="posterimgimg" src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_700,q_80,w_490/v1466064839/w4mnbwtp73hcd4ls0st0.jpg">
+                                                               </div>
+                                                            </div>
+                                                            <div class="contentinfo">
+                                                               <div class="contenttitle">이름</div>
+                                                               <div>
+                                                                  <div class="predictedrating">예상 ★ 3.3</div>
+                                                                  <div class="contenttype">콘텐츠타입</div>
+                                                               </div>
+                                                            </div>
+                                                         </a>
+                                                      </li>
+                                                      <li class="contentlist">
+                                                         <a href="#">
+                                                            <div class="contentposter">
+                                                               <div class="posterimg">
+                                                                  <img class="posterimgimg" src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_700,q_80,w_490/v1466064839/w4mnbwtp73hcd4ls0st0.jpg">
+                                                               </div>
+                                                            </div>
+                                                            <div class="contentinfo">
+                                                               <div class="contenttitle">이름</div>
+                                                               <div>
+                                                                  <div class="predictedrating">예상 ★ 3.3</div>
+                                                                  <div class="contenttype">콘텐츠타입</div>
+                                                               </div>
+                                                            </div>
+                                                         </a>
+                                                      </li>
+
+                                                   </ul>
+                                                </div>
+                                             </div>
+                                          </section>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <footer class="footer">
+                     <div class="MaxWidthGrid">
+                        <seciton class="footersection">
+                           <div class="footerleft">
+                              <div class="ratingsummary">
+                                 지금까지<em>★ 414, 040, 831개의 평가가</em> 쌓였어요.
+                              </div>
+                              <ul class="termsandpolicy">
+                                 <li class="termsandpolicylist1">서비스 이용 약관</li>
+                                 <li class="termsandpolicylist2">개인정보 정책</li>
+                              </ul>
+                              <ul class="frogramsinfo1">
+                                 <li class="frogrmasinfolist1">사업자 등록 번호<span> (211-88-66013)</span></li>
+                                 <li class="frogrmasinfolist2">고객센터 <a class="csmail" href="mailto:cs@watcha.com">cs@watcha.com</a></li>
+                              </ul>
+                              <ul class="frogramsinfo2">
+                                 <li class="frogramsfooter1">WATCHA </li><li class="frogramsfooter2">@ 2011-2018 by Watcha. Inc</li>
+                              </ul>
+                           </div>
+                           <div class="footerright">
+                              <ul class="footerlink">
+                                 <li class="sns">
+                                    <a class="fb" href="https://www.facebook.com/watchaplay/" target="_blank">
+                                       <svg class="ContentSnsFacebook__Svg-yvlveb-0 ejIXcn" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"><path fill="#3C5AA0" d="M18.332 7.2h-2.016s-1.284.077-1.284 1.644v2.008h3.3l-.55 3.107h-2.75v8.04h-3.114v-8.04h-2.75v-3.107h2.75V8.113s-.104-3.834 3.848-3.834c1.848 0 2.566.184 2.566.184V7.2zm0-7.2H3.668A3.668 3.668 0 0 0 0 3.666v14.666A3.67 3.67 0 0 0 3.668 22h14.664A3.668 3.668 0 0 0 22 18.332V3.666A3.666 3.666 0 0 0 18.332 0z"></path></svg>
+                                    </a>
+                                 </li>
+                                 <li class="sns">
+                                    <a class="twt" href="https://twitter.com/watcha_app" target="_blank">
+                                       <svg class="ContentSnsTwitter__Svg-s1skkvxf-0 kqEMyY" xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18"><path fill="#73C8FA" d="M19.751 4.484l.012.586c0 6.003-4.544 12.93-12.848 12.93-2.55 0-4.921-.753-6.915-2.05.347.046.708.069 1.074.069a9.029 9.029 0 0 0 5.606-1.95c-1.979-.034-3.635-1.352-4.216-3.154a4.531 4.531 0 0 0 2.037-.078 4.537 4.537 0 0 1-3.616-4.45V6.33a4.42 4.42 0 0 0 2.037.565A4.546 4.546 0 0 1 .92 3.12c0-.833.223-1.62.615-2.287a12.769 12.769 0 0 0 9.299 4.744 4.38 4.38 0 0 1-.112-1.038c0-2.5 2.014-4.539 4.509-4.539 1.298 0 2.472.554 3.3 1.43A9.058 9.058 0 0 0 21.396.337a4.517 4.517 0 0 1-1.991 2.512A9.043 9.043 0 0 0 22 2.129a9.326 9.326 0 0 1-2.249 2.355"></path></svg>
+                                    </a>
+                                 </li>
+                                 <li class="sns">
+                                    <a class="blog" href="http://www.frograms.com/blog/" target="_blank">
+                                       <svg class="BlogIcon__Svg-s1ag7t6r-0 fOnGPJ" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><g fill="none" transform="translate(-6 -6)"><rect width="31.5" height="31.5" x=".25" y=".25" stroke="#D2D2D2" stroke-width=".5" rx="15.75"></rect><path fill="#000" d="M11 24V8h5.656c1.96 0 3.446.372 4.459 1.115 1.013.744 1.519 1.834 1.519 3.27 0 .784-.203 1.474-.61 2.071-.407.597-.972 1.035-1.697 1.313.828.205 1.48.62 1.958 1.242.477.623.715 1.385.715 2.286 0 1.538-.495 2.703-1.486 3.494-.99.791-2.403 1.194-4.237 1.209H11zm3.327-6.967v4.319h2.85c.784 0 1.396-.185 1.836-.555.44-.37.66-.881.66-1.533 0-1.465-.765-2.21-2.296-2.231h-3.05zm0-2.33h2.462c1.679-.029 2.518-.692 2.518-1.989 0-.725-.213-1.247-.638-1.566-.425-.318-1.096-.478-2.013-.478h-2.329v4.033z"></path></g></svg>
+                                    </a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </section>
+                     </div>
+                  </footer>
+               </div>
+            </div>
+         </section>
+         <footer class="bottomnavtab"></footer>
+      </div>
+   </div>
+</div>
+</body>
+</html>

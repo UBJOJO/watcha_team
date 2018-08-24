@@ -107,7 +107,9 @@ def search(request):
                         title = movie.get('title')
                         content = movie.get('subtitle')
                         poster = movie.get('image')
-                        Movie.objects.create(title=title, content=content, poster=poster)  # 필드 생성/ 제공받는 api 저장
+
+                        Movie.objects.create(title=title, content=content, poster=poster,
+                                             director=director)  # 필드 생성/ 제공받는 api 저장
                 # print(box)
                 # json_serializer = serializers.get_serializer("json")()
                 # movie_json = json_serializer.serialize(list_movie, ensure_ascii=False)
@@ -294,3 +296,7 @@ def logout_user(request):
         "form": form,
     }
     return render(request, 'watcha/watcha_main.html', context)
+
+
+def flower(request):
+    return render(request, 'watcha/watcha_flower.html')
