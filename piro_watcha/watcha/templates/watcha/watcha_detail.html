@@ -18,7 +18,6 @@
       </div>
     </form>
   </div>
-
   <a href="{% url 'watcha:profile' %}">
     <div class="nav__profile">
       <i class="fas fa-user-circle"></i>
@@ -26,7 +25,6 @@
   </a>
 
 </div>
-
 <div class="main__content_flex">
   <div class="main__content">
     <div class="main__title">
@@ -51,8 +49,8 @@
           <a href="{% url 'watcha:score' movie.title %}">
             <div class="restar">수정하기</div>
           </a>
+          <a href="{% url 'watcha:moreEvaluation' %}"><span>평가 추가하기</span></a>
         </form>
-
       </div>
     </div>
 

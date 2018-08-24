@@ -95,7 +95,7 @@ def search(request):
         encText = urllib.parse.quote("{}".format(q))
         # 장르별로 다 저장
         for genre_key in list(genre_dic.keys()):
-            url = "https://openapi.naver.com/v1/search/movie?query=" + encText + "&display=3" + "&genre=%d" % (genre_key) # json 결과
+            url = "https://openapi.naver.com/v1/search/movie?query=" + encText + "&display=100" + "&genre=%d" % (genre_key) # json 결과
             print(genre_key)
             movie_request = urllib.request.Request(url)
             movie_request.add_header("X-Naver-Client-Id", client_id)
