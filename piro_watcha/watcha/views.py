@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Movie, Comment, Score
+from .models import Movie, Comment, Score, Genre, Director, Cast
 from .forms import CommentForm, ScoreForm
 import urllib.request
 import json
@@ -57,6 +57,9 @@ def detail(request, title):
     comment_list = Comment.objects.filter(movie_name=title)
     score_list = Score.objects.filter(movie_name=title)
     form = ScoreForm(request.POST)
+    movie_director_set = movie.director_set.all()
+    movie_cast_set = movie.cast_set.all()
+    movie_genre_set = movie.genre_set.all()
     if request.method == 'POST':
         form = ScoreForm(request.POST)
         if form.is_valid():
@@ -70,21 +73,94 @@ def detail(request, title):
     else:
         return render(request, 'watcha/watcha_detail.html',
                       {'movie': movie, 'comment_list': comment_list, 'score_list': score_list,
-                       'count': comment_num, 'form': form})
+                       'count': comment_num, 'form': form, 'movie_director_set': movie_director_set, 'movie_cast_set': movie_cast_set, 'movie_genre_set': movie_genre_set})
+
 
 
 def search(request):
-    list_movie = []
-    for a in Movie.objects.all():
-        list_movie.append(a.title)
-
-    if request.method == 'GET':
+    # 장르 1~28 다 있는지 확인
+    genre_dic = {1: "드라마", 2: "판타지", 3: "서부", 4: "공포", 5: "로맨스", 6: "모험", 7: "스릴러", 8: "느와르", 9: "컬트", 10: "다큐멘터리",
+                 11: "코미디", 12: "가족", 13: "미스터리", 14: "전쟁", 15: "애니메이션", 16: "범죄", 17: "뮤지컬", 18: "SF", 19: "액션",
+                 20: "무협", 21: "에로", 22: "서스펜스", 23: "서사", 24: "블랙코미디", 25: "실험", 26: "영화카툰", 27: "영화음악",
+                 28: "영화패러디포스터"}
+    for genre in genre_dic.values():
+        if Genre.objects.filter(name=genre):
+            pass
+        else:
+            Genre.objects.create(name=genre)
+    if request.method == "GET":
         client_id = "Qecl29vHRGgGNd4hjiov"
         client_secret = "XGZwdGHHfy"
-
         q = request.GET.get('q')
         encText = urllib.parse.quote("{}".format(q))
-        url = "https://openapi.naver.com/v1/search/movie?query=" + encText + "&display=10"  # json 결과
+        # 장르별로 다 저장
+        for genre_key in list(genre_dic.keys()):
+            url = "https://openapi.naver.com/v1/search/movie?query=" + encText + "&display=3" + "&genre=%d" % (genre_key) # json 결과
+            print(genre_key)
+            movie_request = urllib.request.Request(url)
+            movie_request.add_header("X-Naver-Client-Id", client_id)
+            movie_request.add_header("X-Naver-Client-Secret", client_secret)
+            response = urllib.request.urlopen(movie_request)
+            rescode = response.getcode()
+            # 네이버에서 응답이 정상적으로 왔는지 체크
+            if (rescode == 200):
+                response_body = response.read()
+                result = json.loads(response_body.decode('utf-8'))
+                naver_movies = result.get('items')
+            # naver에서 불러온 영화 문자열 수정
+                for naver_movie in naver_movies:
+                    naver_movie['title'] = naver_movie['title'].replace("<b>", "").replace("</b>", "")
+                # 제목 기준으로 필터링, 기생성된 영화에 장르 추가
+                if naver_movies:
+                    print(naver_movies)
+                    for naver_movie in naver_movies:
+                        title = naver_movie.get('title')
+                        if Movie.objects.filter(title=title):
+                            # 장르 추가하는 부분, 네이버 api에서 장르 하나씩 밖에 검색안되서 무쓸모..
+                            # genre = genre_dic.get(genre_key)
+                            # print(genre)
+                            # first_genre = get_object_or_404(Genre, name=genre)
+                            # print(first_genre)
+                            # if first_genre:
+                            #     movie_query = get_object_or_404(Movie, title=title)
+                            #     print(movie_query)
+                            #     movie_query.genre_set.add(first_genre)
+                            pass
+                    # 네이버 api에서 제공한 정보 저장
+                        else:
+                            title = naver_movie.get('title')
+                            content = naver_movie.get('subtitle')
+                            poster = naver_movie.get('image')
+                            pubDate = naver_movie.get('pubDate')
+                            director_str = naver_movie.get('director')
+                            print(director_str)
+                            director_list = director_str.split('|')
+                            cast_str = naver_movie.get('actor')
+                            cast_list = cast_str.split('|')
+                            genre = genre_dic.get(genre_key)
+                            # 영화 - 장르 연결 및 database에 Movie 저장
+                            genre_query = get_object_or_404(Genre, name=genre)
+                            movie_query = Movie.objects.create(title=title, content=content,
+                                                               poster=poster, pubDate=pubDate)
+                            movie_query.genre_set.add(genre_query)
+                            # 영화 - 감독 연결
+                            print(director_list)
+                            for director in director_list:
+                                if not Director.objects.filter(name=director):
+                                    Director.objects.create(name=director)
+                                    director_query = get_object_or_404(Director, name=director)
+                                    movie_query.director_set.add(director_query)
+                            # 영화 - 출연진 연결
+                            for cast in cast_list:
+                                if not Cast.objects.filter(name=cast):
+                                    Cast.objects.create(name=cast)
+                                    cast_query = get_object_or_404(Cast, name=cast)
+                                    movie_query.cast_set.add(cast_query)
+                # json_serializer = serializers.get_serializer("json")()
+                # movie_json = json_serializer.serialize(list_movie, ensure_ascii=False)
+
+    # 검색결과 보여주기
+        url = "https://openapi.naver.com/v1/search/movie?query=" + encText + "&display=10" # json 결과
         movie_request = urllib.request.Request(url)
         movie_request.add_header("X-Naver-Client-Id", client_id)
         movie_request.add_header("X-Naver-Client-Secret", client_secret)
@@ -96,25 +172,10 @@ def search(request):
             items = result.get('items')
             for item in items:
                 item['title'] = item['title'].replace("<b>", "").replace("</b>", "")
-            print(items)
             if items:
                 high_item = items[0]
-                for movie in items:
-                    title = movie.get('title')
-                    if Movie.objects.filter(title=title):
-                        pass
-                    else:
-                        title = movie.get('title')
-                        content = movie.get('subtitle')
-                        poster = movie.get('image')
-
-                        Movie.objects.create(title=title, content=content, poster=poster,
-                                             director=director)  # 필드 생성/ 제공받는 api 저장
-                # print(box)
-                # json_serializer = serializers.get_serializer("json")()
-                # movie_json = json_serializer.serialize(list_movie, ensure_ascii=False)
                 return render(request, 'watcha/watcha_search.html',
-                              {'high_item': high_item, 'items': items})
+                            {'high_item': high_item, 'items': items})
             else:
                 return render(request, 'watcha/watcha_no_search.html')
 
@@ -202,23 +263,6 @@ def score_edit(request, title):
     return render(request, 'watcha/watcha_detail.html', {'form': form, 'movie': movie})
 
 
-# def comment_edit(request, title):
-#     comment = get_object_or_404(Comment, movie_name=title, author=request.user)
-#     if request.method == "POST":
-#         form = CommentForm(request.POST, instance=comment)
-#         if form.is_valid():
-#             comment = form.save(commit=False)
-#             comment.author = request.user
-#             comment.comment = form.cleaned_data['comment']
-#             comment.movie_name = Movie.objects.get(title=title).title
-#             comment.save()
-#             return redirect('watcha:detail', title=comment.movie_name)
-#     else:
-#         form = CommentForm(instance=comment)
-#         movie = get_object_or_404(Movie, title=title)
-#     return render(request, 'watcha/watcha_comment.html', {'form': form, 'movie': movie})
-
-
 def score_delete(request, pk):
     score = get_object_or_404(Score, pk=pk)
     score.title = score.movie_name
@@ -300,3 +344,16 @@ def logout_user(request):
 
 def flower(request):
     return render(request, 'watcha/watcha_flower.html')
+
+
+def moreEvaluation(request):
+    movie_list = Score.objects.filter(author=request.user)
+    movie_list_seen = []
+    for movie in movie_list:
+        movie_list_seen.append(Movie.objects.filter(title=movie.movie_name))
+    movie_list_not_seen = Movie.objects.all()
+    for movie in movie_list_not_seen:
+        if Score.objects.filter(movie_name=movie.title, author=request.user):
+            movie_list_not_seen = movie_list_not_seen.exclude(title=movie.title)
+    return render(request, 'watcha/watcha_moreEvaluation.html',
+                  {'movie_list_seen': movie_list_seen, 'movie_list_not_seen': movie_list_not_seen})

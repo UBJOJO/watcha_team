@@ -1,0 +1,146 @@
+* {
+    box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+	color: #646464;
+}
+
+
+body {
+    margin: 0px;
+    background-color: white;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	position: fixed;
+	background-color: white;
+	height: 70px;
+	border-bottom: 1px solid #d7d7d7;
+	width: 100%;
+}
+
+
+.logo {
+	display: inline-block;
+	color: #ff2f6e;
+	font-size: 25px;
+	font-weight: 900;
+	margin-left: 25px;
+	margin-top: 16px;
+}
+
+.header__search {
+	display: inline-block;
+	text-align: center;
+	height: 70px;
+	line-height: 70px;
+}
+
+.search input {
+	margin-top: 11px;
+	width: 500px;
+	height: 40px;
+	border-radius: 6px;
+	border: none;
+	background-color: #F5F5F5;
+	padding-left: 40px;
+	color: black;
+	font-size: 15px;
+}
+
+.header__user {
+	display: inline-block;
+	margin-right: 20px;
+	margin-top: 10px;
+	font-size: 30px;
+}
+
+.search__img {
+	position: relative;
+	left: 32px;
+}
+
+.content {
+	padding-top:80px;
+	padding-left: 15px;
+	padding-right: 15px;
+	height: 1500px;
+}
+
+.content__pack__high {
+	border-bottom: 1px solid #F5F5F5;
+	height: 350px;
+}
+
+.content__pack {
+	border-bottom: 1px solid #F5F5F5;
+	height: 1000px;
+}
+
+.content__message {
+	margin-top:10px;
+	margin-bottom: 50px;
+	margin-left: 5px;
+	font-size: 18px;
+	font-weight: 900;
+}
+
+.content__movie {
+	margin-bottom: 30px;
+	float: left;
+	width: 200px;
+	height: 300px;
+	margin-right: 20px;
+}
+
+.content__movie__img {
+	margin-bottom: 25px;
+}
+
+.content__movie__info__title {
+	margin-bottom: 10px;
+	font-size: 18px;
+}
+
+.content__movie__info__info {
+	color: gray;
+}
+
+.no__content {
+	padding-top:80px;
+	padding-left: 15px;
+	padding-right: 15px;
+	height: 1500px;
+	text-align: center;
+	color: gray;
+}
+
+.moremovie {
+	display: inline-block;
+	margin-left: 550px;
+	font-size: 18px;
+	/*border: 2px solid black;*/
+	margin-bottom: 20px;
+}
+
+.movie_num {
+	color: #ff2f6e;
+	font-weight: 900;
+}
+
+.more_score {
+	display: inline-block;
+	/*border: 1px solid white;*/
+	font-weight: 900;
+	margin-left: 610px;
+	color: white;
+	background-color: #ff2f6e;
+	border-radius: 15px;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+}

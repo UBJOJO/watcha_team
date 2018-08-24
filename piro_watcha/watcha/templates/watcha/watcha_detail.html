@@ -47,8 +47,10 @@
             <i id="four" class="fas fa-star"></i>
             <i id="five" class="fas fa-star"></i>
           </div>
-            <button id="btn" type="submit"><span>평가하기</span></button>
-            <a href="{% url 'watcha:score' movie.title %}"><div class="restar">수정하기</div></a>
+          <button id="btn" type="submit"><span>평가하기</span></button>
+          <a href="{% url 'watcha:score' movie.title %}">
+            <div class="restar">수정하기</div>
+          </a>
         </form>
 
       </div>
@@ -59,12 +61,14 @@
         <img src="{{ movie.poster }}">
       </div>
       <div class="main__info">
-        감독: {{ movie.director }}<br><br>
-        출연진: {{ movie.cast }}<br><br>
+        감독: {% for movie_director in movie_director_set %}
+        {{ movie_director }} |{% endfor %}<br><br>
+        출연진: {% for movie_cast in movie_cast_set %}
+        {{ movie_cast }} |{% endfor %}<br><br>
         줄거리: {{ movie.content }}<br><br>
         개봉일: {{ movie.pubDate }}<br><br>
-        장르: {{ movie.genre }}<br><br>
-        국가: {{ movie.country }}<br><br>
+        {% for movie_genre in movie_genre_set %}
+        장르: {{ movie_genre }} |{% endfor %}<br><br>
       </div>
     </div>
 
@@ -72,8 +76,6 @@
       <div id="comment" class="comment__new">
         <a href="{% url 'watcha:comment' movie.title %}" class="top-menu"><span class="glyphicon glyphicon-plus">코멘트 작성하기</span></a>
       </div>
-
-
     </div>
 
 

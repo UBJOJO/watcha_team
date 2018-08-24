@@ -4,7 +4,7 @@
 <head>
   <title>왓챠</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/watcha_flavor.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/watcha_moreEvaluation.css' %}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 </head>
 <body>
@@ -24,15 +24,18 @@
 
 <div class="content">
   {% if movie_list_seen|length < 5 %}
-  <div class="moremovie">아직 평가한 영화가 
+  <div class="moremovie">아직 평가한 영화가
     <span class="movie_num">{{ movie_list_seen|length }}개</span> 뿐이네요. </div><br>
   {% elif 5 < movie_list_seen|length < 10 %}
-    <div class="moremovie">혹시 영알못? 아직 
+    <div class="moremovie">혹시 영알못? 아직
+    <span class="movie_num">{{ movie_list_seen|length }}개</span> 뿐이네요. </div><br>
+  {% elif 10 < movie_list_seen|length < 11 %}
+    <div class="moremovie">영화 좀 보나봐요? 하지만 아직
     <span class="movie_num">{{ movie_list_seen|length }}개</span> 뿐이네요. </div><br>
   {% endif %}
-  <a href="{% url 'watcha:moreEvaluation' %}"><div class="more_score">더 평가하러 가기</div></a>
-  <div class="content__message">내가 평가한 영화</div>
-  <div class="content__pack__high">
+  <a href=""><div class="more_score">더 평가하러 가기</div></a>
+  <!-- <div class="content__message">내가 평가한 영화</div> -->
+  <!-- <div class="content__pack__high">
       {% for movie_query in movie_list_seen %}
         {% for movie in movie_query %}
           <div class="content__movie">
@@ -53,9 +56,33 @@
         </div>
         {% endfor %}
       {% endfor %}
+    </div> -->
+  <div class="content__message">아직 {{ request.user }}님이 보지 않은 영화입니다. 더 평가 해 보세요.</div>
+  <div class="content__pack">
+    {% for movie in movie_list_not_seen %}
+        {% if movie.poster %}
+        <div class="content__movie">
+          <div class="content__movie__img">
+            {{ forloop. }}
+            <a href="{% url 'watcha:detail' movie %}">
+              <img src="{{ movie.poster }}" alt="" width="130" height="180">
+            </a>
+          </div>
+          <div class="content__movie__info">
+          <div class="content__movie__info__title">
+            {{ movie.title|safe }}
+          </div>
+          <div class="content__movie__info__info">
+            {{ movie.pubDate }} - {{ movie.director }}
+          </div>
+          </div>
+        </div>
+    {% endif %}
+    {% endfor %}
     </div>
+    추가내용
+</div>
 
-    
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

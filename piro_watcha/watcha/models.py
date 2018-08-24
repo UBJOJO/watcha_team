@@ -17,6 +17,7 @@ class Movie(models.Model):
     country_set = models.ManyToManyField('Country', blank=True, null=True)
     rank = models.CharField(max_length=20, verbose_name='순위', blank=True, null=True)
     poster = models.CharField(max_length=200, verbose_name='포스터', blank=True, null=True)
+    pubDate = models.TextField(verbose_name='제작년도', blank=True, null=True)
 
     def __str__(self):
         return self.title
